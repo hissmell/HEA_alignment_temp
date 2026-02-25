@@ -7,10 +7,10 @@ from .soap import SOAPExtractor, MultiRcutSOAPAnalyzer, SOAPConfig
 from .coulomb_matrix import CoulombMatrixExtractor
 from .sine_matrix import SineMatrixExtractor
 from .ewald_sum_matrix import EwaldSumMatrixExtractor
+from .mbtr import MBTRExtractor, MBTRConfig
 
 # Will be added as modules are migrated:
 # from .acsf import ACSFExtractor
-# from .mbtr import MBTRExtractor
 
 __all__ = [
     'SOAPExtractor',
@@ -19,6 +19,7 @@ __all__ = [
     'CoulombMatrixExtractor',
     'SineMatrixExtractor',
     'EwaldSumMatrixExtractor',
+    'MBTRExtractor',
+    'MBTRConfig',
     # 'ACSFExtractor',
-    # 'MBTRExtractor',
 ]
