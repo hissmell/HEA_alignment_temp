@@ -34,13 +34,17 @@ src/
 │   └── alignment.py               # Multi-metric alignment analysis
 ├── representations/                # Representation extraction
 │   ├── base.py                    # Abstract base classes
-│   ├── physics_inspired/          # SOAP, ACSF, MBTR extractors
-│   │   └── soap.py
+│   ├── physics_inspired/          # Physics-based descriptors
+│   │   ├── coulomb_matrix.py     # Coulomb Matrix
+│   │   ├── sine_matrix.py        # Sine Matrix (periodic)
+│   │   ├── ewald_sum_matrix.py   # Ewald Sum Matrix
+│   │   ├── mbtr.py               # Many-Body Tensor
+│   │   └── soap.py               # SOAP descriptor
 │   └── mlip_embeddings/           # MLIP embedding extractors
 │       ├── equiformer.py          # EquiformerV2 embeddings
 │       ├── mace.py                # MACE embeddings
 │       └── uma.py                 # UMA embeddings
-└── [data_efficiency/, models/, utils/] # Future modules
+└── [data_efficiency/, models/, utils/] # Additional modules
 ```
 
 ### 🎯 Key Features
@@ -89,10 +93,13 @@ all_representations = hybrid.extract_all(atoms)
 ## 📊 Datasets & Results
 
 ### Primary Dataset: 25Cao
-- **System**: High Entropy Alloy (Ti, Zr, Hf, V, Nb, Ta, Cr, Mo, W) surfaces
+- **System**: High Entropy Alloy (Ag, Pt, Pd, Cu, Ni, Au, Ir, Rh, Ru) surfaces
 - **Adsorbates**: O and OH adsorption
 - **Sites**: fcc, hcp, bridge, top adsorption sites
-- **Structures**: ~50,000 adsorption configurations
+- **Structures**: 8,168 total (4,084 O + 4,084 OH configurations)
+- **Data Location**: `datasets/25Cao/`
+  - Source: `sourcedata/O/`, `sourcedata/OH/`
+  - Representations: `representations/` (chunked JSON, 1000 structures/file)
 
 ### Experiment Results
 - **SOAP-EquiformerV2 Alignment Analysis**: `data/results/alignment_analysis/25cao_soap_equiformer/`
@@ -155,28 +162,43 @@ uncertain_samples = analyzer.select_uncertain_samples(
 ```
 
 #### 2. Representation Extraction
+
+##### Physics-Inspired Representations
 ```python
-from src.representations import SOAPExtractor, SOAPConfig
+from src.representations.physics_inspired import CoulombMatrixExtractor
 from ase.io import read
 
-# Configure SOAP
-soap_config = SOAPConfig(
-    r_cut=6.0,
-    n_max=8,
-    l_max=6,
-    periodic=True
+# Extract Coulomb Matrix
+extractor = CoulombMatrixExtractor(
+    n_atoms_max=50,
+    permutation='sorted_l2',
+    flatten=False  # Keep as 2D matrix
 )
 
-# Extract representations
-extractor = SOAPExtractor(soap_config)
 atoms = read("structure.xyz")
-representations = extractor.extract_single(
-    atoms,
-    atom_selection="multi"  # "all", "slab", "site", "multi"
-)
+result = extractor.extract_single(atoms)
+cm_matrix = result['cm_all']  # 50x50 matrix
 
-print(f"SOAP representations: {list(representations.keys())}")
-# Output: ['soap_full', 'soap_slab', 'soap_site']
+# Available descriptors:
+# - CoulombMatrixExtractor
+# - SineMatrixExtractor (periodic systems)
+# - EwaldSumMatrixExtractor (periodic crystals)
+# - MBTRExtractor (many-body tensor)
+# - SOAPExtractor (smooth overlap of atomic positions)
+```
+
+##### 25Cao Dataset Extraction
+```bash
+# Extract Coulomb Matrix for O/OH adsorbates
+python scripts/experiments/extract_coulomb_matrix_25cao.py --adsorbate O
+python scripts/experiments/extract_coulomb_matrix_25cao.py --adsorbate OH
+
+# Output structure:
+# datasets/25Cao/representations/coulomb_matrix/
+# ├── O_chunk_0000.json      # 1000 structures per chunk
+# ├── OH_chunk_0000.json
+# ├── extraction_metadata_O.xlsx  # Structure info & parameters
+# └── metadata.json
 ```
 
 #### 3. Multi-RCUT Analysis
