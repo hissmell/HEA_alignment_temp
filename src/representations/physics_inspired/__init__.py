@@ -8,6 +8,7 @@ from .coulomb_matrix import CoulombMatrixExtractor
 from .sine_matrix import SineMatrixExtractor
 from .ewald_sum_matrix import EwaldSumMatrixExtractor
 from .mbtr import MBTRExtractor, MBTRConfig
+from .local_mbtr import LocalMBTRExtractor
 
 # Will be added as modules are migrated:
 # from .acsf import ACSFExtractor
@@ -21,5 +22,6 @@ __all__ = [
     'EwaldSumMatrixExtractor',
     'MBTRExtractor',
     'MBTRConfig',
+    'LocalMBTRExtractor',
     # 'ACSFExtractor',
 ]
