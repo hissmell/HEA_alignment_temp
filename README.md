@@ -109,7 +109,7 @@ all_representations = hybrid.extract_all(atoms)
 ### Extracted Representations (2025.02.26)
 - **Coulomb Matrix**: ✅ Complete (O: 4,084, OH: 4,084 structures)
 - **Sine Matrix**: ✅ Complete (O: 3,084, OH: 4,084 structures)
-- **Ewald Sum Matrix**: 🔜 Pending
+- **Ewald Sum Matrix**: 🔄 In Progress (periodic structures only)
 - **MBTR**: 🔜 Pending
 - **SOAP**: 🔜 Pending
 
@@ -203,6 +203,10 @@ python scripts/experiments/extract_coulomb_matrix_25cao.py --adsorbate OH
 # Extract Sine Matrix for O/OH adsorbates (periodic systems)
 python scripts/experiments/extract_sine_matrix_25cao.py --adsorbate O
 python scripts/experiments/extract_sine_matrix_25cao.py --adsorbate OH
+
+# Extract Ewald Sum Matrix for O/OH adsorbates (periodic crystals only)
+python scripts/experiments/extract_ewald_sum_matrix_25cao.py --adsorbate O
+python scripts/experiments/extract_ewald_sum_matrix_25cao.py --adsorbate OH
 
 # Output structure:
 # datasets/25Cao/representations/{descriptor_name}/
