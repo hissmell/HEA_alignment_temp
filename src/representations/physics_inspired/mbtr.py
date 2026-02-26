@@ -129,6 +129,21 @@ class MBTRExtractor(PhysicsInspiredExtractor):
     def setup(self) -> None:
         """Initialize the MBTR descriptor."""
         try:
+            # Monkey patch dscribe's System.from_atoms to avoid _get_constraints issue
+            from dscribe.core.system import System
+
+            def patched_from_atoms(atoms):
+                """Patched version that doesn't call _get_constraints"""
+                system = System(
+                    symbols=atoms.get_chemical_symbols(),
+                    positions=atoms.get_positions(),
+                    cell=atoms.get_cell(),
+                    pbc=atoms.get_pbc()
+                )
+                return system
+
+            # Apply monkey patch
+            System.from_atoms = staticmethod(patched_from_atoms)
             if self.mbtr_config is not None:
                 # Setup with multiple k-terms
                 kwargs = {}
