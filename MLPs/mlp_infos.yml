@@ -1,0 +1,155 @@
+# MLIP Model Information
+# family: Model family (MACE, SevenNet, Orb, Equiformer, UMA, eSCN)
+# target: Energy prediction target (adsorption_energy or total_energy)
+# output_layer: Name of energy prediction block in model (to be determined)
+# normalize_std/mean: Normalization parameters for energy predictions
+
+models:
+  # Equiformer Family
+  eq2_31M_ec4_allmd:
+    family: "Equiformer"
+    model: "EquiformerV2"
+    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eq2_31M_ec4_allmd.pt"
+    output_layer: null
+    target: "adsorption_energy"
+    normalize_std: 2.8873
+    normalize_mean: -0.7554
+
+  eq2_153M_ec4_allmd:
+    family: "Equiformer"
+    model: "EquiformerV2"
+    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eq2_153M_ec4_allmd.pt"
+    output_layer: null
+    target: "adsorption_energy"
+    normalize_std: 2.887317180633545
+    normalize_mean: -0.7554450631141663
+
+  eq2_121M_e4_f100_oc22_s2ef:
+    family: "Equiformer"
+    model: "EquiformerV2"
+    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eq2_121M_e4_f100_oc22_s2ef.pt"
+    output_layer: null
+    target: "total_energy"
+    normalize_std: 1.0
+    normalize_mean: 0.0
+
+  # UMA Family
+  uma-s-1p1:
+    family: "UMA"
+    model: "UMA"
+    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/uma-s-1p1.pt"
+    output_layer: null
+    target: "total_energy"
+    normalize_std: 1.4230
+    normalize_mean: 0.0
+
+  uma-m-1p1:
+    family: "UMA"
+    model: "UMA"
+    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/uma-m-1p1.pt"
+    output_layer: null
+    target: "total_energy"
+    normalize_std: 1.4230
+    normalize_mean: 0.0
+
+  SevenNet-Omni:
+    family: "SevenNet"
+    model: "SevenNet"
+    path: "/home/pn50212/anaconda3/envs/fairchem/lib/python3.10/site-packages/sevenn/pretrained_potentials/SevenNet_omni/checkpoint_sevennet_omni.pth"
+    output_layer: "reduce_input_to_hidden"
+    target: "total_energy"
+    normalize_std: null
+    normalize_mean: null
+    extraction_notes: "Extract OUTPUT of reduce_input_to_hidden layer (per-atom latent vectors)"
+
+  SevenNet-MF-ompa:
+    family: "SevenNet"
+    model: "SevenNet"
+    path: "/home/pn50212/anaconda3/envs/fairchem/lib/python3.10/site-packages/sevenn/pretrained_potentials/SevenNet_MF_ompa/checkpoint_sevennet_mf_ompa.pth"
+    output_layer: "reduce_input_to_hidden"
+    target: "total_energy"
+    normalize_std: null
+    normalize_mean: null
+    extraction_notes: "Extract OUTPUT of reduce_input_to_hidden layer (per-atom latent vectors)"
+
+  SevenNet-omat:
+    family: "SevenNet"
+    model: "SevenNet"
+    path: "/home/pn50212/anaconda3/envs/fairchem/lib/python3.10/site-packages/sevenn/pretrained_potentials/SevenNet_omat/checkpoint_sevennet_omat.pth"
+    output_layer: "reduce_input_to_hidden"
+    target: "total_energy"
+    normalize_std: null
+    normalize_mean: null
+    extraction_notes: "Extract OUTPUT of reduce_input_to_hidden layer (per-atom latent vectors)"
+
+  MACE-MH-0-OMAT: # use mace-mh-0.model and omat_pbe head
+    family: "MACE"
+    model: "MACE"
+    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/mace-mh-0.model"
+    output_layer: "readouts.1.linear_1"
+    target: "total_energy"
+    normalize_std: null
+    normalize_mean: null
+    extraction_notes: "Extract OUTPUT of readouts.1.linear_1 (per-atom latent, shape: (n_atoms, 112))"
+
+  MACE-MH-0-OC20: # use mace-mh-0.model and oc20_usemppbe head
+    family: "MACE"
+    model: "MACE"
+    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/mace-mh-0.model"
+    output_layer: "readouts.1.linear_1"
+    target: "total_energy"
+    normalize_std: null
+    normalize_mean: null
+    extraction_notes: "Extract OUTPUT of readouts.1.linear_1 (per-atom latent, shape: (n_atoms, 112))"
+
+  Orb-v3-conservative-inf-omat:
+    family: "Orb"
+    model: "Orb"
+    # just load by "orbff = pretrained.orb_v3_conservative_inf_omat(device=device,precision="float32-high")"
+    # calc = ORBCalculator(orbff, device=device)
+    # so, path is null
+    path: null
+    output_layer: "model._decoder"
+    target: "total_energy"
+    normalize_std: null
+    normalize_mean: null
+    extraction_notes: "Extract INPUT to model._decoder (GNN output, per-atom latent, shape: (n_atoms, 256))"
+
+  Orb-v3-conservative-inf-mpa:
+    family: "Orb"
+    model: "Orb"
+    # just load by "orbff = pretrained.orb_v3_conservative_inf_mpa(device=device,precision="float32-high")"
+    # calc = ORBCalculator(orbff, device=device)
+    # so, path is null
+    path: null
+    output_layer: "model._decoder"
+    target: "total_energy"
+    normalize_std: null
+    normalize_mean: null
+    extraction_notes: "Extract INPUT to model._decoder (GNN output, per-atom latent, shape: (n_atoms, 256))"
+
+  Orb-v3-direct-inf-omat:
+    family: "Orb"
+    model: "Orb"
+    # just load by "orbff = pretrained.orb_v3_direct_inf_omat(device=device,precision="float32-high")"
+    # calc = ORBCalculator(orbff, device=device)
+    # so, path is null
+    path: null
+    output_layer: "model._decoder"
+    target: "total_energy"
+    normalize_std: null
+    normalize_mean: null
+    extraction_notes: "Extract INPUT to model._decoder (GNN output, per-atom latent, shape: (n_atoms, 256))"
+
+  Orb-v3-direct-inf-mpa:
+    family: "Orb"
+    model: "Orb"
+    # just load by "orbff = pretrained.orb_v3_direct_inf_mpa(device=device,precision="float32-high")"
+    # calc = ORBCalculator(orbff, device=device)
+    # so, path is null
+    path: null
+    output_layer: "model._decoder"
+    target: "total_energy"
+    normalize_std: null
+    normalize_mean: null
+    extraction_notes: "Extract INPUT to model._decoder (GNN output, per-atom latent, shape: (n_atoms, 256))"
