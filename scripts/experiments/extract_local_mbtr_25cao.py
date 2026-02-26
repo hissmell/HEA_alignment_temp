@@ -130,8 +130,9 @@ def extract_lmbtr_for_config(tasknames, adsorbate, config_name, config_params, c
         r_cut=config_params['r_cut']
     )
 
-    # Output directory - parameter-specific
-    output_dir = Path(f"/DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/local_mbtr/{config_name}")
+    # Output directory - parameter and rcut specific
+    r_cut_str = f"rcut_{config_params['r_cut']:.1f}".replace('.', 'p')  # 6.0 -> rcut_6p0
+    output_dir = Path(f"/DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/local_mbtr/{r_cut_str}/{config_name}")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Process in chunks
@@ -359,6 +360,8 @@ if __name__ == "__main__":
                         help="Number of structures per chunk file")
     parser.add_argument("--test", action="store_true",
                         help="Test mode: only process first 10 structures")
+    parser.add_argument("--rcut", type=float, default=6.0,
+                        help="Local environment cutoff radius in Angstroms (default: 6.0)")
     args = parser.parse_args()
 
     # Load tasknames
@@ -374,6 +377,12 @@ if __name__ == "__main__":
 
     # Get configurations
     configs = get_lmbtr_configurations()
+
+    # Update rcut for all configurations if specified
+    if args.rcut != 6.0:
+        for config in configs.values():
+            config['r_cut'] = args.rcut
+        print(f"Using custom r_cut: {args.rcut} Å")
 
     # Extract specific config or all
     if args.config:

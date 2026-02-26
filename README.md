@@ -227,6 +227,16 @@ python scripts/experiments/extract_local_mbtr_25cao.py --adsorbate OH --config k
 # ├── OH_chunk_0000.json
 # ├── extraction_metadata_O.xlsx  # Structure info & parameters
 # └── metadata.json
+
+# Local MBTR structure with rcut hierarchy:
+# datasets/25Cao/representations/local_mbtr/
+# ├── rcut_6p0/                    # r_cut=6.0Å
+# │   ├── k2_inverse_distance/
+# │   ├── k2_distance/
+# │   ├── k3_angle/
+# │   └── k3_cosine/
+# └── rcut_8p0/                    # r_cut=8.0Å (if different cutoffs used)
+#     └── ...
 ```
 
 #### 3. Multi-RCUT Analysis
