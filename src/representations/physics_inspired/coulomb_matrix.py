@@ -127,6 +127,12 @@ class CoulombMatrixExtractor(PhysicsInspiredExtractor):
                 # Already 1D array of eigenvalues
                 results[f"cm_{atom_selection}"] = cm
             else:
+                # Handle different permutation outputs
+                if self.permutation == 'sorted_l2' and cm.ndim == 1:
+                    # sorted_l2 returns flattened matrix, need to reshape
+                    matrix_size = int(np.sqrt(len(cm)))
+                    cm = cm.reshape(matrix_size, matrix_size)
+
                 # Matrix output
                 if self.sparse:
                     # Convert sparse to dense for consistency
