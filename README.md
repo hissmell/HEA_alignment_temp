@@ -110,7 +110,8 @@ all_representations = hybrid.extract_all(atoms)
 - **Coulomb Matrix**: ✅ Complete (O: 4,084, OH: 4,084 structures)
 - **Sine Matrix**: ✅ Complete (O: 3,084, OH: 4,084 structures)
 - **Ewald Sum Matrix**: 🔄 In Progress (periodic structures only)
-- **MBTR**: 🔜 Pending
+- **MBTR**: 🔄 In Progress (parameter-specific extraction)
+- **Local MBTR**: ✅ Ready (atom-centered local environment analysis)
 - **SOAP**: 🔜 Pending
 
 ## 🚀 Quick Start
@@ -186,11 +187,19 @@ atoms = read("structure.xyz")
 result = extractor.extract_single(atoms)
 cm_matrix = result['cm_all']  # 50x50 matrix
 
+# Local MBTR for atom-centered environment analysis
+from src.representations.physics_inspired.local_mbtr import create_25cao_lmbtr_extractor
+
+lmbtr_extractor = create_25cao_lmbtr_extractor("inverse_distance", "k2")
+result = lmbtr_extractor.extract_single(atoms, centers="adsorbates")
+local_features = result['lmbtr_all']  # (n_centers, n_features) per-atom descriptors
+
 # Available descriptors:
 # - CoulombMatrixExtractor
 # - SineMatrixExtractor (periodic systems)
 # - EwaldSumMatrixExtractor (periodic crystals)
 # - MBTRExtractor (many-body tensor)
+# - LocalMBTRExtractor (atom-centered local environment)
 # - SOAPExtractor (smooth overlap of atomic positions)
 ```
 
@@ -207,6 +216,10 @@ python scripts/experiments/extract_sine_matrix_25cao.py --adsorbate OH
 # Extract Ewald Sum Matrix for O/OH adsorbates (periodic crystals only)
 python scripts/experiments/extract_ewald_sum_matrix_25cao.py --adsorbate O
 python scripts/experiments/extract_ewald_sum_matrix_25cao.py --adsorbate OH
+
+# Extract Local MBTR for O/OH adsorbates (atom-centered local environment)
+python scripts/experiments/extract_local_mbtr_25cao.py --adsorbate O --config k2_inverse_distance
+python scripts/experiments/extract_local_mbtr_25cao.py --adsorbate OH --config k2_inverse_distance
 
 # Output structure:
 # datasets/25Cao/representations/{descriptor_name}/
