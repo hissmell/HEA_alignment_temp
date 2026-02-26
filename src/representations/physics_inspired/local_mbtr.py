@@ -149,10 +149,50 @@ class LocalMBTRExtractor(PhysicsInspiredExtractor):
             if centers == "adsorbates":
                 # Find O and H atoms (adsorbates in 25Cao)
                 symbols = atoms.get_chemical_symbols()
-                center_indices = [i for i, symbol in enumerate(symbols) if symbol in ['O', 'H']]
+                adsorbate_indices = [i for i, symbol in enumerate(symbols) if symbol in ['O', 'H']]
+                center_indices = adsorbate_indices.copy()
+
                 if not center_indices:
                     # Fallback: use all atoms if no adsorbates found
                     center_indices = list(range(len(atoms)))
+                else:
+                    # Add nearby surface atoms for more comprehensive analysis
+                    # Find atoms within extended radius of adsorbates
+                    from ase.neighborlist import NeighborList
+                    extended_r_cut = self.r_cut + 2.0  # Extend search radius
+
+                    cutoffs = [extended_r_cut / 2] * len(atoms)
+                    nl = NeighborList(cutoffs, self_interaction=False, bothways=True)
+                    nl.update(atoms)
+
+                    surface_atoms = set()
+                    for ads_idx in adsorbate_indices:
+                        indices, offsets = nl.get_neighbors(ads_idx)
+                        # Add surface metal atoms (not adsorbates)
+                        for idx in indices:
+                            if symbols[idx] not in ['O', 'H']:
+                                surface_atoms.add(idx)
+
+                    # Limit to reasonable number of surface atoms (e.g., top 10 closest)
+                    if len(surface_atoms) > 10:
+                        # Calculate distances and keep closest ones
+                        positions = atoms.get_positions()
+                        ads_center = positions[adsorbate_indices].mean(axis=0)
+
+                        surface_distances = []
+                        for surf_idx in surface_atoms:
+                            dist = np.linalg.norm(positions[surf_idx] - ads_center)
+                            surface_distances.append((surf_idx, dist))
+
+                        # Sort by distance and keep closest 10
+                        surface_distances.sort(key=lambda x: x[1])
+                        closest_surface = [idx for idx, dist in surface_distances[:10]]
+                        surface_atoms = set(closest_surface)
+
+                    # Combine adsorbates + nearby surface atoms
+                    center_indices = adsorbate_indices + list(surface_atoms)
+                    print(f"Using {len(adsorbate_indices)} adsorbates + {len(surface_atoms)} nearby surface atoms as centers")
+
             elif centers == "all":
                 center_indices = list(range(len(atoms)))
             else:

@@ -229,8 +229,8 @@ def extract_lmbtr_for_config(tasknames, adsorbate, config_name, config_params, c
                 atoms = read(str(file_path))
 
                 # Extract Local MBTR representation
-                # Use "adsorbates" mode to focus on O/H atoms for 25Cao analysis
-                result = extractor.extract_single(atoms, centers="adsorbates")
+                # Use "all" mode to extract for every atom in the structure
+                result = extractor.extract_single(atoms, centers="all")
                 representation = result.get('lmbtr_all', None)
 
                 if representation is not None:

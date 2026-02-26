@@ -217,7 +217,7 @@ python scripts/experiments/extract_sine_matrix_25cao.py --adsorbate OH
 python scripts/experiments/extract_ewald_sum_matrix_25cao.py --adsorbate O
 python scripts/experiments/extract_ewald_sum_matrix_25cao.py --adsorbate OH
 
-# Extract Local MBTR for O/OH adsorbates (atom-centered local environment)
+# Extract Local MBTR for O/OH adsorbates (per-atom local environment analysis)
 python scripts/experiments/extract_local_mbtr_25cao.py --adsorbate O --config k2_inverse_distance
 python scripts/experiments/extract_local_mbtr_25cao.py --adsorbate OH --config k2_inverse_distance
 
