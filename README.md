@@ -106,6 +106,13 @@ all_representations = hybrid.extract_all(atoms)
 - **CKNNA Analysis**: Pre-computed results in `cknna_analysis_31m/`
 - **Data Efficiency Experiments**: Results in `data_efficiency_results/`
 
+### Extracted Representations (2025.02.26)
+- **Coulomb Matrix**: ✅ Complete (O: 4,084, OH: 4,084 structures)
+- **Sine Matrix**: ✅ Complete (O: 3,084, OH: 4,084 structures)
+- **Ewald Sum Matrix**: 🔜 Pending
+- **MBTR**: 🔜 Pending
+- **SOAP**: 🔜 Pending
+
 ## 🚀 Quick Start
 
 ### Installation
@@ -193,8 +200,12 @@ cm_matrix = result['cm_all']  # 50x50 matrix
 python scripts/experiments/extract_coulomb_matrix_25cao.py --adsorbate O
 python scripts/experiments/extract_coulomb_matrix_25cao.py --adsorbate OH
 
+# Extract Sine Matrix for O/OH adsorbates (periodic systems)
+python scripts/experiments/extract_sine_matrix_25cao.py --adsorbate O
+python scripts/experiments/extract_sine_matrix_25cao.py --adsorbate OH
+
 # Output structure:
-# datasets/25Cao/representations/coulomb_matrix/
+# datasets/25Cao/representations/{descriptor_name}/
 # ├── O_chunk_0000.json      # 1000 structures per chunk
 # ├── OH_chunk_0000.json
 # ├── extraction_metadata_O.xlsx  # Structure info & parameters

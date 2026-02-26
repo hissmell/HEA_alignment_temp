@@ -76,6 +76,22 @@ class SineMatrixExtractor(PhysicsInspiredExtractor):
     def setup(self) -> None:
         """Initialize the Sine Matrix descriptor."""
         try:
+            # Monkey patch dscribe's System.from_atoms to avoid _get_constraints issue
+            from dscribe.core.system import System
+
+            def patched_from_atoms(atoms):
+                """Patched version that doesn't call _get_constraints"""
+                system = System(
+                    symbols=atoms.get_chemical_symbols(),
+                    positions=atoms.get_positions(),
+                    cell=atoms.get_cell(),
+                    pbc=atoms.get_pbc()
+                )
+                return system
+
+            # Apply monkey patch
+            System.from_atoms = staticmethod(patched_from_atoms)
+
             self.descriptor = SineMatrix(
                 n_atoms_max=self.n_atoms_max,
                 permutation=self.permutation,
@@ -132,7 +148,8 @@ class SineMatrixExtractor(PhysicsInspiredExtractor):
             return results
 
         try:
-            # Create Sine Matrix
+            # Create Sine Matrix directly
+            # The System.from_atoms is already patched in setup()
             sm = self.descriptor.create(selected_atoms)
 
             # Process based on output type
@@ -140,6 +157,12 @@ class SineMatrixExtractor(PhysicsInspiredExtractor):
                 # Already 1D array of eigenvalues
                 results[f"sm_{atom_selection}"] = sm
             else:
+                # Handle different permutation outputs
+                if self.permutation == 'sorted_l2' and sm.ndim == 1:
+                    # sorted_l2 returns flattened matrix, need to reshape
+                    matrix_size = int(np.sqrt(len(sm)))
+                    sm = sm.reshape(matrix_size, matrix_size)
+
                 # Matrix output
                 if self.sparse:
                     # Convert sparse to dense for consistency
