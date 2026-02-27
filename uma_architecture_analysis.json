@@ -1,0 +1,281 @@
+{
+  "uma-s-1p1": {
+    "model_name": "uma-s-1p1",
+    "model_path": "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/uma-s-1p1.pt",
+    "total_parameters": 152,
+    "model_config": {
+      "_target_": "fairchem.core.models.base.HydraModel",
+      "backbone": {
+        "num_experts": 32,
+        "sphere_channels": 128,
+        "max_neighbors": 300,
+        "edge_channels": 128,
+        "regress_stress": true,
+        "norm_type": "rms_norm_sh",
+        "cs_emb_grad": true,
+        "moe_layer_type": "pytorch",
+        "max_num_elements": 100,
+        "otf_graph": false,
+        "cutoff": 6,
+        "regress_forces": true,
+        "hidden_channels": 128,
+        "chg_spin_emb_type": "rand_emb",
+        "moe_dropout": 0.05,
+        "use_global_embedding": false,
+        "mmax": 2,
+        "use_pbc_single": true,
+        "num_distance_basis": 64,
+        "num_layers": 4,
+        "ff_type": "spectral",
+        "model": "fairchem.core.models.uma.escn_moe.eSCNMDMoeBackbone",
+        "use_composition_embedding": true,
+        "lmax": 2,
+        "use_pbc": true,
+        "distance_function": "gaussian",
+        "direct_forces": false,
+        "act_type": "gate",
+        "dataset_list": "['oc20', 'omol', 'omat', 'odac', 'omc']",
+        "model_version": 1.1
+      },
+      "heads": {
+        "energyandforcehead": {
+          "module": "fairchem.core.models.uma.escn_moe.DatasetSpecificSingleHeadWrapper",
+          "head_kwargs": {
+            "wrap_property": false
+          },
+          "head_cls": "fairchem.core.models.uma.escn_md.MLP_EFS_Head",
+          "dataset_names": "['omol', 'omat', 'oc20', 'omc', 'odac']"
+        }
+      },
+      "pass_through_head_outputs": true
+    },
+    "modules": {
+      "backbone": {
+        "total_params": 146,
+        "energy_params": [],
+        "head_params": [],
+        "output_params": [],
+        "linear_params": [
+          "backbone.blocks.3.atom_wise.so3_linear_1.weight",
+          "backbone.blocks.3.atom_wise.so3_linear_1.bias",
+          "backbone.blocks.3.atom_wise.so3_linear_2.weight",
+          "backbone.blocks.3.atom_wise.so3_linear_2.bias",
+          "backbone.blocks.0.atom_wise.so3_linear_1.weight",
+          "backbone.blocks.0.atom_wise.so3_linear_1.bias",
+          "backbone.blocks.0.atom_wise.so3_linear_2.weight",
+          "backbone.blocks.0.atom_wise.so3_linear_2.bias",
+          "backbone.blocks.1.atom_wise.so3_linear_1.weight",
+          "backbone.blocks.1.atom_wise.so3_linear_1.bias",
+          "backbone.blocks.1.atom_wise.so3_linear_2.weight",
+          "backbone.blocks.1.atom_wise.so3_linear_2.bias",
+          "backbone.blocks.2.atom_wise.so3_linear_1.weight",
+          "backbone.blocks.2.atom_wise.so3_linear_1.bias",
+          "backbone.blocks.2.atom_wise.so3_linear_2.weight",
+          "backbone.blocks.2.atom_wise.so3_linear_2.bias"
+        ]
+      },
+      "output_heads": {
+        "total_params": 6,
+        "energy_params": [
+          "output_heads.energyandforcehead.head.energy_block.0.weight",
+          "output_heads.energyandforcehead.head.energy_block.0.bias",
+          "output_heads.energyandforcehead.head.energy_block.2.weight",
+          "output_heads.energyandforcehead.head.energy_block.2.bias",
+          "output_heads.energyandforcehead.head.energy_block.4.weight",
+          "output_heads.energyandforcehead.head.energy_block.4.bias"
+        ],
+        "head_params": [
+          "output_heads.energyandforcehead.head.energy_block.0.weight",
+          "output_heads.energyandforcehead.head.energy_block.0.bias",
+          "output_heads.energyandforcehead.head.energy_block.2.weight",
+          "output_heads.energyandforcehead.head.energy_block.2.bias",
+          "output_heads.energyandforcehead.head.energy_block.4.weight",
+          "output_heads.energyandforcehead.head.energy_block.4.bias"
+        ],
+        "output_params": [
+          "output_heads.energyandforcehead.head.energy_block.0.weight",
+          "output_heads.energyandforcehead.head.energy_block.0.bias",
+          "output_heads.energyandforcehead.head.energy_block.2.weight",
+          "output_heads.energyandforcehead.head.energy_block.2.bias",
+          "output_heads.energyandforcehead.head.energy_block.4.weight",
+          "output_heads.energyandforcehead.head.energy_block.4.bias"
+        ],
+        "linear_params": []
+      }
+    },
+    "energy_layers": [
+      [
+        "output_heads.energyandforcehead.head.energy_block.0.weight",
+        [
+          128,
+          128
+        ]
+      ],
+      [
+        "output_heads.energyandforcehead.head.energy_block.0.bias",
+        [
+          128
+        ]
+      ],
+      [
+        "output_heads.energyandforcehead.head.energy_block.2.weight",
+        [
+          128,
+          128
+        ]
+      ],
+      [
+        "output_heads.energyandforcehead.head.energy_block.2.bias",
+        [
+          128
+        ]
+      ],
+      [
+        "output_heads.energyandforcehead.head.energy_block.4.weight",
+        [
+          1,
+          128
+        ]
+      ],
+      [
+        "output_heads.energyandforcehead.head.energy_block.4.bias",
+        [
+          1
+        ]
+      ]
+    ],
+    "final_layers": [],
+    "loaded_model": null
+  },
+  "uma-m-1p1": {
+    "model_name": "uma-m-1p1",
+    "model_path": "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/uma-m-1p1.pt",
+    "total_parameters": 322,
+    "model_config": {
+      "_target_": "fairchem.core.models.base.HydraModel",
+      "backbone": {
+        "num_experts": 32,
+        "sphere_channels": 128,
+        "max_neighbors": 300,
+        "edge_channels": 128,
+        "regress_stress": true,
+        "norm_type": "rms_norm_sh",
+        "cs_emb_grad": true,
+        "moe_layer_type": "pytorch",
+        "max_num_elements": 100,
+        "otf_graph": false,
+        "cutoff": 6,
+        "regress_forces": true,
+        "hidden_channels": 128,
+        "chg_spin_emb_type": "rand_emb",
+        "moe_dropout": 0.05,
+        "use_global_embedding": false,
+        "mmax": 2,
+        "use_pbc_single": true,
+        "num_distance_basis": 128,
+        "num_layers": 10,
+        "ff_type": "spectral",
+        "model": "fairchem.core.models.uma.escn_moe.eSCNMDMoeBackbone",
+        "use_composition_embedding": true,
+        "lmax": 4,
+        "use_pbc": true,
+        "distance_function": "gaussian",
+        "direct_forces": false,
+        "act_type": "gate",
+        "dataset_list": "['oc20', 'omol', 'omat', 'odac', 'omc']",
+        "model_version": 1.1
+      },
+      "heads": {
+        "energyandforcehead": {
+          "module": "fairchem.core.models.uma.escn_moe.DatasetSpecificSingleHeadWrapper",
+          "head_kwargs": {
+            "wrap_property": false
+          },
+          "head_cls": "fairchem.core.models.uma.escn_md.MLP_EFS_Head",
+          "dataset_names": "['omol', 'omat', 'oc20', 'omc', 'odac']"
+        }
+      },
+      "pass_through_head_outputs": true
+    },
+    "modules": {
+      "backbone": {
+        "total_params": 316,
+        "energy_params": [],
+        "head_params": [],
+        "output_params": [],
+        "linear_params": 40
+      },
+      "output_heads": {
+        "total_params": 6,
+        "energy_params": [
+          "output_heads.energyandforcehead.head.energy_block.0.weight",
+          "output_heads.energyandforcehead.head.energy_block.0.bias",
+          "output_heads.energyandforcehead.head.energy_block.2.weight",
+          "output_heads.energyandforcehead.head.energy_block.2.bias",
+          "output_heads.energyandforcehead.head.energy_block.4.weight",
+          "output_heads.energyandforcehead.head.energy_block.4.bias"
+        ],
+        "head_params": [
+          "output_heads.energyandforcehead.head.energy_block.0.weight",
+          "output_heads.energyandforcehead.head.energy_block.0.bias",
+          "output_heads.energyandforcehead.head.energy_block.2.weight",
+          "output_heads.energyandforcehead.head.energy_block.2.bias",
+          "output_heads.energyandforcehead.head.energy_block.4.weight",
+          "output_heads.energyandforcehead.head.energy_block.4.bias"
+        ],
+        "output_params": [
+          "output_heads.energyandforcehead.head.energy_block.0.weight",
+          "output_heads.energyandforcehead.head.energy_block.0.bias",
+          "output_heads.energyandforcehead.head.energy_block.2.weight",
+          "output_heads.energyandforcehead.head.energy_block.2.bias",
+          "output_heads.energyandforcehead.head.energy_block.4.weight",
+          "output_heads.energyandforcehead.head.energy_block.4.bias"
+        ],
+        "linear_params": []
+      }
+    },
+    "energy_layers": [
+      [
+        "output_heads.energyandforcehead.head.energy_block.0.weight",
+        [
+          128,
+          128
+        ]
+      ],
+      [
+        "output_heads.energyandforcehead.head.energy_block.0.bias",
+        [
+          128
+        ]
+      ],
+      [
+        "output_heads.energyandforcehead.head.energy_block.2.weight",
+        [
+          128,
+          128
+        ]
+      ],
+      [
+        "output_heads.energyandforcehead.head.energy_block.2.bias",
+        [
+          128
+        ]
+      ],
+      [
+        "output_heads.energyandforcehead.head.energy_block.4.weight",
+        [
+          1,
+          128
+        ]
+      ],
+      [
+        "output_heads.energyandforcehead.head.energy_block.4.bias",
+        [
+          1
+        ]
+      ]
+    ],
+    "final_layers": [],
+    "loaded_model": null
+  }
+}

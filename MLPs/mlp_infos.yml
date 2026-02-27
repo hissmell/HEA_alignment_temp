@@ -6,24 +6,6 @@
 
 models:
   # Equiformer Family
-  eq2_31M_ec4_allmd:
-    family: "Equiformer"
-    model: "EquiformerV2"
-    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eq2_31M_ec4_allmd.pt"
-    output_layer: null
-    target: "adsorption_energy"
-    normalize_std: 2.8873
-    normalize_mean: -0.7554
-
-  eq2_153M_ec4_allmd:
-    family: "Equiformer"
-    model: "EquiformerV2"
-    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eq2_153M_ec4_allmd.pt"
-    output_layer: null
-    target: "adsorption_energy"
-    normalize_std: 2.887317180633545
-    normalize_mean: -0.7554450631141663
-
   eq2_121M_e4_f100_oc22_s2ef:
     family: "Equiformer"
     model: "EquiformerV2"
@@ -38,19 +20,21 @@ models:
     family: "UMA"
     model: "UMA"
     path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/uma-s-1p1.pt"
-    output_layer: null
+    output_layer: "output_heads.energyandforcehead.head.energy_block.2"
     target: "total_energy"
     normalize_std: 1.4230
     normalize_mean: 0.0
+    extraction_notes: "Extract OUTPUT of energy_block.2 (latent before final linear, shape: (n_atoms, 128))"
 
   uma-m-1p1:
     family: "UMA"
     model: "UMA"
     path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/uma-m-1p1.pt"
-    output_layer: null
+    output_layer: "output_heads.energyandforcehead.head.energy_block.2"
     target: "total_energy"
     normalize_std: 1.4230
     normalize_mean: 0.0
+    extraction_notes: "Extract OUTPUT of energy_block.2 (latent before final linear, shape: (n_atoms, 128))"
 
   SevenNet-Omni:
     family: "SevenNet"
