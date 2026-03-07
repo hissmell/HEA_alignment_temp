@@ -106,13 +106,36 @@ all_representations = hybrid.extract_all(atoms)
 - **CKNNA Analysis**: Pre-computed results in `cknna_analysis_31m/`
 - **Data Efficiency Experiments**: Results in `data_efficiency_results/`
 
-### Extracted Representations (2025.02.26)
+### Extracted Representations (2025.03.07 Updated)
+
+#### Physics-Inspired Representations
 - **Coulomb Matrix**: ✅ Complete (O: 4,084, OH: 4,084 structures)
 - **Sine Matrix**: ✅ Complete (O: 3,084, OH: 4,084 structures)
-- **Ewald Sum Matrix**: 🔄 In Progress (periodic structures only)
-- **MBTR**: 🔄 In Progress (parameter-specific extraction)
-- **Local MBTR**: ✅ Ready (atom-centered local environment analysis)
+- **Ewald Sum Matrix**: ✅ Complete (O: 4,084, OH: 4,084 structures)
+- **MBTR**: ✅ Complete (k2/k3 configurations extracted)
+- **Local MBTR**: ✅ Complete (k2_inverse_distance, atom-centered local environment)
 - **SOAP**: 🔜 Pending
+
+#### MLIP Latent Vectors (✅ All Complete - 2025.03.07)
+- **MACE Family** (2 models): ✅ Complete
+  - mace-mh-0-omat: 112-dim per-atom features
+  - mace-mh-0-oc20: 112-dim per-atom features
+- **Orb Family** (4 models): ✅ Complete
+  - orb-v3-conservative-inf-omat: 256-dim per-atom features
+  - orb-v3-conservative-inf-mpa: 256-dim per-atom features
+  - orb-v3-direct-inf-omat: 256-dim per-atom features
+  - orb-v3-direct-inf-mpa: 256-dim per-atom features
+- **UMA Family** (2 models): ✅ Complete
+  - uma-s-1p1: 128-dim per-atom features
+  - uma-m-1p1: 128-dim per-atom features
+- **Equiformer Family** (6 models): ✅ Complete
+  - eqV2_31M_omat: 128-dim per-atom features
+  - eqV2_86M_omat: 128-dim per-atom features
+  - eqV2_153M_omat: 128-dim per-atom features
+  - eqV2_31M_omat_mp_salex: 128-dim per-atom features
+  - eqV2_86M_omat_mp_salex: 128-dim per-atom features
+  - eqV2_153M_omat_mp_salex: 128-dim per-atom features
+- **SevenNet Family**: ⚠️ Blocked (TorchScript compilation prevents hook registration)
 
 ## 🚀 Quick Start
 

@@ -1,0 +1,180 @@
+n012.hpc
+Wed Mar  4 11:20:43 PM KST 2026
+Removing mkl version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+Removing compiler version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+  Load "debugger" to debug DPC++ applications with the gdb-oneapi debugger.
+  Load "dpl" for additional DPC++ APIs: https://github.com/oneapi-src/oneDPL
+Removing oclfpga version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+Removing compiler-rt version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+
+============================================================
+Extracting MACE latent vectors
+Model: mace_mh_0_omat
+Adsorbate: O
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/O adsorption.json
+Total structures: 4084
+
+Initializing MACE extractor...
+Registered hook on layer: readouts.1.linear_1
+Loaded MACE model: mace_mh_0_omat
+Using head: omat_pbe
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/mace/mace_mh_0_omat/extraction_metadata_O.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/mace/mace_mh_0_omat
+============================================================
+
+
+============================================================
+Extracting MACE latent vectors
+Model: mace_mh_0_omat
+Adsorbate: OH
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/OH adsorption.json
+Total structures: 4084
+
+Initializing MACE extractor...
+Registered hook on layer: readouts.1.linear_1
+Loaded MACE model: mace_mh_0_omat
+Using head: omat_pbe
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/mace/mace_mh_0_omat/extraction_metadata_OH.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/mace/mace_mh_0_omat
+============================================================
+
+
+============================================================
+Extracting MACE latent vectors
+Model: mace_mh_0_oc20
+Adsorbate: O
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/O adsorption.json
+Total structures: 4084
+
+Initializing MACE extractor...
+Registered hook on layer: readouts.1.linear_1
+Loaded MACE model: mace_mh_0_oc20
+Using head: oc20_usemppbe
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/mace/mace_mh_0_oc20/extraction_metadata_O.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/mace/mace_mh_0_oc20
+============================================================
+
+
+============================================================
+Extracting MACE latent vectors
+Model: mace_mh_0_oc20
+Adsorbate: OH
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/OH adsorption.json
+Total structures: 4084
+
+Initializing MACE extractor...
+Registered hook on layer: readouts.1.linear_1
+Loaded MACE model: mace_mh_0_oc20
+Using head: oc20_usemppbe
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/mace/mace_mh_0_oc20/extraction_metadata_OH.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/mace/mace_mh_0_oc20
+============================================================
+
+Run time
+647 sec
+10.7833 min
+0.179722 hour

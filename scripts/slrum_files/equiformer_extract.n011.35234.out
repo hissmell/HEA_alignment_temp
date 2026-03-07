@@ -1,0 +1,544 @@
+n011.hpc
+Sat Mar  7 06:50:00 PM KST 2026
+Removing mkl version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+Removing compiler version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+  Load "debugger" to debug DPC++ applications with the gdb-oneapi debugger.
+  Load "dpl" for additional DPC++ APIs: https://github.com/oneapi-src/oneDPL
+Removing oclfpga version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+Removing compiler-rt version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+
+============================================================
+Extracting Equiformer latent vectors
+Model: eqV2_31M_omat
+Adsorbate: O
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/O adsorption.json
+Total structures: 4084
+
+Initializing Equiformer extractor...
+Loading Equiformer model: eqV2_31M_omat
+From: /DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_31M_omat.pt
+Selected extraction layer: output_heads.energy.energy_block.scalar_mlp
+Registered hook on layer: output_heads.energy.energy_block.scalar_mlp
+Loaded Equiformer model: eqV2_31M_omat
+Model type: HydraModel
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_31M_omat/extraction_metadata_O.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_31M_omat
+============================================================
+
+
+============================================================
+Extracting Equiformer latent vectors
+Model: eqV2_31M_omat
+Adsorbate: OH
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/OH adsorption.json
+Total structures: 4084
+
+Initializing Equiformer extractor...
+Loading Equiformer model: eqV2_31M_omat
+From: /DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_31M_omat.pt
+Selected extraction layer: output_heads.energy.energy_block.scalar_mlp
+Registered hook on layer: output_heads.energy.energy_block.scalar_mlp
+Loaded Equiformer model: eqV2_31M_omat
+Model type: HydraModel
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_31M_omat/extraction_metadata_OH.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_31M_omat
+============================================================
+
+
+============================================================
+Extracting Equiformer latent vectors
+Model: eqV2_86M_omat
+Adsorbate: O
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/O adsorption.json
+Total structures: 4084
+
+Initializing Equiformer extractor...
+Loading Equiformer model: eqV2_86M_omat
+From: /DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_86M_omat.pt
+Selected extraction layer: output_heads.energy.energy_block.scalar_mlp
+Registered hook on layer: output_heads.energy.energy_block.scalar_mlp
+Loaded Equiformer model: eqV2_86M_omat
+Model type: HydraModel
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_86M_omat/extraction_metadata_O.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_86M_omat
+============================================================
+
+
+============================================================
+Extracting Equiformer latent vectors
+Model: eqV2_86M_omat
+Adsorbate: OH
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/OH adsorption.json
+Total structures: 4084
+
+Initializing Equiformer extractor...
+Loading Equiformer model: eqV2_86M_omat
+From: /DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_86M_omat.pt
+Selected extraction layer: output_heads.energy.energy_block.scalar_mlp
+Registered hook on layer: output_heads.energy.energy_block.scalar_mlp
+Loaded Equiformer model: eqV2_86M_omat
+Model type: HydraModel
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_86M_omat/extraction_metadata_OH.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_86M_omat
+============================================================
+
+
+============================================================
+Extracting Equiformer latent vectors
+Model: eqV2_153M_omat
+Adsorbate: O
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/O adsorption.json
+Total structures: 4084
+
+Initializing Equiformer extractor...
+Loading Equiformer model: eqV2_153M_omat
+From: /DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_153M_omat.pt
+Selected extraction layer: output_heads.energy.energy_block.scalar_mlp
+Registered hook on layer: output_heads.energy.energy_block.scalar_mlp
+Loaded Equiformer model: eqV2_153M_omat
+Model type: HydraModel
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_153M_omat/extraction_metadata_O.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_153M_omat
+============================================================
+
+
+============================================================
+Extracting Equiformer latent vectors
+Model: eqV2_153M_omat
+Adsorbate: OH
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/OH adsorption.json
+Total structures: 4084
+
+Initializing Equiformer extractor...
+Loading Equiformer model: eqV2_153M_omat
+From: /DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_153M_omat.pt
+Selected extraction layer: output_heads.energy.energy_block.scalar_mlp
+Registered hook on layer: output_heads.energy.energy_block.scalar_mlp
+Loaded Equiformer model: eqV2_153M_omat
+Model type: HydraModel
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_153M_omat/extraction_metadata_OH.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_153M_omat
+============================================================
+
+
+============================================================
+Extracting Equiformer latent vectors
+Model: eqV2_31M_omat_mp_salex
+Adsorbate: O
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/O adsorption.json
+Total structures: 4084
+
+Initializing Equiformer extractor...
+Loading Equiformer model: eqV2_31M_omat_mp_salex
+From: /DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_31M_omat_mp_salex.pt
+Selected extraction layer: output_heads.energy.energy_block.scalar_mlp
+Registered hook on layer: output_heads.energy.energy_block.scalar_mlp
+Loaded Equiformer model: eqV2_31M_omat_mp_salex
+Model type: HydraModel
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_31M_omat_mp_salex/extraction_metadata_O.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_31M_omat_mp_salex
+============================================================
+
+
+============================================================
+Extracting Equiformer latent vectors
+Model: eqV2_31M_omat_mp_salex
+Adsorbate: OH
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/OH adsorption.json
+Total structures: 4084
+
+Initializing Equiformer extractor...
+Loading Equiformer model: eqV2_31M_omat_mp_salex
+From: /DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_31M_omat_mp_salex.pt
+Selected extraction layer: output_heads.energy.energy_block.scalar_mlp
+Registered hook on layer: output_heads.energy.energy_block.scalar_mlp
+Loaded Equiformer model: eqV2_31M_omat_mp_salex
+Model type: HydraModel
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_31M_omat_mp_salex/extraction_metadata_OH.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_31M_omat_mp_salex
+============================================================
+
+
+============================================================
+Extracting Equiformer latent vectors
+Model: eqV2_86M_omat_mp_salex
+Adsorbate: O
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/O adsorption.json
+Total structures: 4084
+
+Initializing Equiformer extractor...
+Loading Equiformer model: eqV2_86M_omat_mp_salex
+From: /DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_86M_omat_mp_salex.pt
+Selected extraction layer: output_heads.energy.energy_block.scalar_mlp
+Registered hook on layer: output_heads.energy.energy_block.scalar_mlp
+Loaded Equiformer model: eqV2_86M_omat_mp_salex
+Model type: HydraModel
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_86M_omat_mp_salex/extraction_metadata_O.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_86M_omat_mp_salex
+============================================================
+
+
+============================================================
+Extracting Equiformer latent vectors
+Model: eqV2_86M_omat_mp_salex
+Adsorbate: OH
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/OH adsorption.json
+Total structures: 4084
+
+Initializing Equiformer extractor...
+Loading Equiformer model: eqV2_86M_omat_mp_salex
+From: /DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_86M_omat_mp_salex.pt
+Selected extraction layer: output_heads.energy.energy_block.scalar_mlp
+Registered hook on layer: output_heads.energy.energy_block.scalar_mlp
+Loaded Equiformer model: eqV2_86M_omat_mp_salex
+Model type: HydraModel
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_86M_omat_mp_salex/extraction_metadata_OH.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_86M_omat_mp_salex
+============================================================
+
+
+============================================================
+Extracting Equiformer latent vectors
+Model: eqV2_153M_omat_mp_salex
+Adsorbate: O
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/O adsorption.json
+Total structures: 4084
+
+Initializing Equiformer extractor...
+Loading Equiformer model: eqV2_153M_omat_mp_salex
+From: /DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_153M_omat_mp_salex.pt
+Selected extraction layer: output_heads.energy.energy_block.scalar_mlp
+Registered hook on layer: output_heads.energy.energy_block.scalar_mlp
+Loaded Equiformer model: eqV2_153M_omat_mp_salex
+Model type: HydraModel
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_153M_omat_mp_salex/extraction_metadata_O.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_153M_omat_mp_salex
+============================================================
+
+
+============================================================
+Extracting Equiformer latent vectors
+Model: eqV2_153M_omat_mp_salex
+Adsorbate: OH
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/OH adsorption.json
+Total structures: 4084
+
+Initializing Equiformer extractor...
+Loading Equiformer model: eqV2_153M_omat_mp_salex
+From: /DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_153M_omat_mp_salex.pt
+Selected extraction layer: output_heads.energy.energy_block.scalar_mlp
+Registered hook on layer: output_heads.energy.energy_block.scalar_mlp
+Loaded Equiformer model: eqV2_153M_omat_mp_salex
+Model type: HydraModel
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+
+Saved metadata to: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_153M_omat_mp_salex/extraction_metadata_OH.xlsx
+Removed hook
+
+============================================================
+Extraction Complete!
+============================================================
+Total structures: 4084
+Successfully extracted: 4084
+Failed: 0
+Success rate: 100.00%
+Output directory: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/representations/mlip_latent/equiformer/eqV2_153M_omat_mp_salex
+============================================================
+
+Run time
+9159 sec
+152.65 min
+2.54417 hour

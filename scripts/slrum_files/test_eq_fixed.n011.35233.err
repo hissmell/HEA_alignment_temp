@@ -1,0 +1,195 @@
+mace-torch not available. Please install mace-torch
+fairchem-core not available. Please install fairchem-core
+INFO:root:local rank base: 0
+WARNING:root:Couldn't modify the submission pickle with error: [Errno 2] No such file or directory: '/fsx-ocp-med/lbluque/logs/S2EFS/train/4424532/35233_submitted.pkl'
+INFO:root:amp: true
+cmd:
+  checkpoint_dir: /DATA/user_scratch/pn50212/2024/12_AtomAttention/checkpoints/2026-03-07-18-46-40
+  commit: core:None,experimental:NA
+  identifier: ''
+  logs_dir: /DATA/user_scratch/pn50212/2024/12_AtomAttention/logs/wandb/2026-03-07-18-46-40
+  print_every: 100
+  results_dir: /DATA/user_scratch/pn50212/2024/12_AtomAttention/results/2026-03-07-18-46-40
+  seed: null
+  timestamp_id: 2026-03-07-18-46-40
+  version: 1.10.0
+dataset:
+  a2g_args:
+    r_energy: true
+    r_forces: true
+    r_stress: true
+  format: ase_db
+  transforms:
+    decompose_tensor:
+      decomposition:
+        stress_anisotropic:
+          irrep_dim: 2
+        stress_isotropic:
+          irrep_dim: 0
+      rank: 2
+      tensor: stress
+    element_references:
+      file: /fsx-ocp-med/shared/omat24/norms-refs/2024-09-13/element_references.pt
+    normalizer:
+      file: /fsx-ocp-med/shared/omat24/norms-refs/2024-09-13/normalizers.pt
+evaluation_metrics:
+  metrics:
+    energy:
+    - mae
+    - mae_density
+    forces:
+    - mae
+    - forcesx_mae
+    - forcesy_mae
+    - forcesz_mae
+    - cosine_similarity
+    stress:
+    - mae
+    - mae_density
+    stress_anisotropic:
+    - mae
+    stress_isotropic:
+    - mae
+  primary_metric: energy_mae
+gp_gpus: null
+gpus: 1
+logger: wandb
+loss_functions:
+- energy:
+    coefficient: 20
+    fn: mae_density
+- forces:
+    coefficient: 20
+    fn: l2mae
+- stress_isotropic:
+    coefficient: 5
+    fn: mae
+- stress_anisotropic:
+    coefficient: 5
+    fn: mae
+    reduction: mean_all
+model:
+  backbone:
+    alpha_drop: 0.1
+    attn_activation: silu
+    attn_alpha_channels: 64
+    attn_hidden_channels: 64
+    attn_value_channels: 16
+    avg_degree: 61.94676351484548
+    avg_num_nodes: 31.16592360068011
+    distance_function: gaussian
+    drop_path_rate: 0.1
+    edge_channels: 128
+    enforce_max_neighbors_strictly: false
+    ffn_activation: silu
+    ffn_hidden_channels: 128
+    grid_resolution: 18
+    lmax_list:
+    - 4
+    max_neighbors: 20
+    max_num_elements: 96
+    max_radius: 12.0
+    mmax_list:
+    - 2
+    model: equiformer_v2_backbone
+    norm_type: layer_norm_sh
+    num_distance_basis: 512
+    num_heads: 8
+    num_layers: 8
+    num_sphere_samples: 128
+    otf_graph: true
+    proj_drop: 0.0
+    share_atom_edge_embedding: false
+    sphere_channels: 128
+    use_atom_edge_embedding: true
+    use_attn_renorm: true
+    use_gate_act: false
+    use_grid_mlp: true
+    use_m_share_rad: false
+    use_pbc: true
+    use_pbc_single: true
+    use_s2_act_attn: false
+    use_sep_s2_act: true
+    weight_init: uniform
+  heads:
+    energy:
+      module: fairchem.core.models.equiformer_v2.heads.EqV2ScalarHead
+    forces:
+      module: fairchem.core.models.equiformer_v2.heads.EqV2VectorHead
+    stress:
+      decompose: true
+      module: fairchem.core.models.equiformer_v2.heads.Rank2SymmetricTensorHead
+      output_name: stress
+      use_source_target_embedding: true
+  name: hydra
+  otf_graph: true
+  pass_through_head_outputs: true
+optim:
+  batch_size: 8
+  clip_grad_norm: 100
+  ema_decay: 0.999
+  eval_batch_size: 12
+  eval_every: 5000
+  load_balancing: atoms
+  lr_initial: 0.0006
+  max_epochs: 2
+  num_workers: 8
+  optimizer: AdamW
+  optimizer_params:
+    weight_decay: 0.001
+  scheduler: LambdaLR
+  scheduler_params:
+    epochs: 393848
+    lambda_type: cosine
+    lr: 0.0006
+    lr_min_factor: 0.01
+    warmup_epochs: 1969
+    warmup_factor: 0.2
+outputs:
+  energy:
+    level: system
+    property: energy
+  forces:
+    eval_on_free_atoms: true
+    level: atom
+    property: forces
+    train_on_free_atoms: true
+  stress:
+    decomposition:
+      stress_anisotropic:
+        eval_on_free_atoms: true
+        irrep_dim: 2
+        level: system
+        parent: stress
+        train_on_free_atoms: true
+      stress_isotropic:
+        eval_on_free_atoms: true
+        irrep_dim: 0
+        level: system
+        parent: stress
+        train_on_free_atoms: true
+    level: system
+    property: stress
+relax_dataset: {}
+slurm:
+  account: ocp
+  cpus_per_task: 9
+  folder: /fsx-ocp-med/lbluque/logs/S2EFS/train/4424532
+  gpus_per_node: 8
+  job_id: '35233'
+  job_name: N8L4M2_ec20_fc20_sc5_nd8_bfix_continue
+  mem: 480GB
+  nodes: 8
+  ntasks_per_node: 8
+  partition: learn
+  qos: lowest
+  time: 4320
+task: {}
+test_dataset: {}
+trainer: ocp
+val_dataset: {}
+
+INFO:root:Loading model: hydra
+INFO:root:Loaded HydraModel with 31207434 parameters.
+INFO:root:Loading checkpoint in inference-only mode, not loading keys associated with trainer state!
+WARNING:root:No seed has been set in modelcheckpoint or OCPCalculator! Results may not be reproducible on re-run

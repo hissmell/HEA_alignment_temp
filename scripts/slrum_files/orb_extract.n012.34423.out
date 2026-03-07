@@ -1,0 +1,16 @@
+n012.hpc
+Wed Mar  4 11:31:28 PM KST 2026
+Removing mkl version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+Removing compiler version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+  Load "debugger" to debug DPC++ applications with the gdb-oneapi debugger.
+  Load "dpl" for additional DPC++ APIs: https://github.com/oneapi-src/oneDPL
+Removing oclfpga version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+Removing compiler-rt version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+Run time
+23 sec
+0.383333 min
+0.00638889 hour

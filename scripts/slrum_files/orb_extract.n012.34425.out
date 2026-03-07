@@ -1,0 +1,246 @@
+n012.hpc
+Wed Mar  4 11:34:58 PM KST 2026
+Removing mkl version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+Removing compiler version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+  Load "debugger" to debug DPC++ applications with the gdb-oneapi debugger.
+  Load "dpl" for additional DPC++ APIs: https://github.com/oneapi-src/oneDPL
+Removing oclfpga version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+Removing compiler-rt version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+
+============================================================
+Extracting Orb latent vectors
+Model: orb_v3_conservative_inf_omat
+Adsorbate: O
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/O adsorption.json
+Total structures: 4084
+
+Initializing Orb extractor...
+Loading Orb model: orb_v3_conservative_inf_omat
+Registered hook on layer: model._decoder (capturing input)
+Loaded Orb model: orb_v3_conservative_inf_omat
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+Failed for orb_v3_conservative_inf_omat with O: No module named 'openpyxl'
+
+============================================================
+Extracting Orb latent vectors
+Model: orb_v3_conservative_inf_omat
+Adsorbate: OH
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/OH adsorption.json
+Total structures: 4084
+
+Initializing Orb extractor...
+Loading Orb model: orb_v3_conservative_inf_omat
+Registered hook on layer: model._decoder (capturing input)
+Loaded Orb model: orb_v3_conservative_inf_omat
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+Failed for orb_v3_conservative_inf_omat with OH: No module named 'openpyxl'
+
+============================================================
+Extracting Orb latent vectors
+Model: orb_v3_conservative_inf_mpa
+Adsorbate: O
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/O adsorption.json
+Total structures: 4084
+
+Initializing Orb extractor...
+Loading Orb model: orb_v3_conservative_inf_mpa
+Downloading …ervative-inf-mpa-20250404.ckpt ━━━━━━━━━━━ 100% 0:00:44 102.1/102.1
+                                                                     MB         
+Registered hook on layer: model._decoder (capturing input)
+Loaded Orb model: orb_v3_conservative_inf_mpa
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+Failed for orb_v3_conservative_inf_mpa with O: No module named 'openpyxl'
+
+============================================================
+Extracting Orb latent vectors
+Model: orb_v3_conservative_inf_mpa
+Adsorbate: OH
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/OH adsorption.json
+Total structures: 4084
+
+Initializing Orb extractor...
+Loading Orb model: orb_v3_conservative_inf_mpa
+Registered hook on layer: model._decoder (capturing input)
+Loaded Orb model: orb_v3_conservative_inf_mpa
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+Failed for orb_v3_conservative_inf_mpa with OH: No module named 'openpyxl'
+
+============================================================
+Extracting Orb latent vectors
+Model: orb_v3_direct_inf_omat
+Adsorbate: O
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/O adsorption.json
+Total structures: 4084
+
+Initializing Orb extractor...
+Loading Orb model: orb_v3_direct_inf_omat
+Downloading …-direct-inf-omat-20250404.ckpt ━━━━━━━━━━━ 100% 0:00:40 102.6/102.6
+                                                                     MB         
+Registered hook on layer: model._decoder (capturing input)
+Loaded Orb model: orb_v3_direct_inf_omat
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+Failed for orb_v3_direct_inf_omat with O: No module named 'openpyxl'
+
+============================================================
+Extracting Orb latent vectors
+Model: orb_v3_direct_inf_omat
+Adsorbate: OH
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/OH adsorption.json
+Total structures: 4084
+
+Initializing Orb extractor...
+Loading Orb model: orb_v3_direct_inf_omat
+Registered hook on layer: model._decoder (capturing input)
+Loaded Orb model: orb_v3_direct_inf_omat
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+Failed for orb_v3_direct_inf_omat with OH: No module named 'openpyxl'
+
+============================================================
+Extracting Orb latent vectors
+Model: orb_v3_direct_inf_mpa
+Adsorbate: O
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/O adsorption.json
+Total structures: 4084
+
+Initializing Orb extractor...
+Loading Orb model: orb_v3_direct_inf_mpa
+Downloading …3-direct-inf-mpa-20250404.ckpt ━━━━━━━━━━━ 100% 0:00:43 102.6/102.6
+                                                                     MB         
+Registered hook on layer: model._decoder (capturing input)
+Loaded Orb model: orb_v3_direct_inf_mpa
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+Failed for orb_v3_direct_inf_mpa with O: No module named 'openpyxl'
+
+============================================================
+Extracting Orb latent vectors
+Model: orb_v3_direct_inf_mpa
+Adsorbate: OH
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/OH adsorption.json
+Total structures: 4084
+
+Initializing Orb extractor...
+Loading Orb model: orb_v3_direct_inf_mpa
+Registered hook on layer: model._decoder (capturing input)
+Loaded Orb model: orb_v3_direct_inf_mpa
+Device: cuda
+
+Extracting latent vectors...
+
+Saving chunk 0 with 1000 structures...
+
+Saving chunk 1 with 1000 structures...
+
+Saving chunk 2 with 1000 structures...
+
+Saving chunk 3 with 1000 structures...
+
+Saving final chunk 4 with 84 structures...
+Failed for orb_v3_direct_inf_mpa with OH: No module named 'openpyxl'
+Run time
+1453 sec
+24.2167 min
+0.403611 hour

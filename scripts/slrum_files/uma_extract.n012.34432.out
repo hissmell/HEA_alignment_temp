@@ -1,0 +1,64 @@
+n012.hpc
+Wed Mar  4 11:55:08 PM KST 2026
+Removing mkl version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+Removing compiler version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+  Load "debugger" to debug DPC++ applications with the gdb-oneapi debugger.
+  Load "dpl" for additional DPC++ APIs: https://github.com/oneapi-src/oneDPL
+Removing oclfpga version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+Removing compiler-rt version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+
+============================================================
+Extracting UMA latent vectors
+Model: uma_s_1p1
+Adsorbate: O
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/O adsorption.json
+Total structures: 4084
+
+Initializing UMA extractor...
+Failed for uma_s_1p1 with O: Failed to load UMA model: No module named 'fairchem.core.models.model_registry'
+
+============================================================
+Extracting UMA latent vectors
+Model: uma_s_1p1
+Adsorbate: OH
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/OH adsorption.json
+Total structures: 4084
+
+Initializing UMA extractor...
+Failed for uma_s_1p1 with OH: Failed to load UMA model: No module named 'fairchem.core.models.model_registry'
+
+============================================================
+Extracting UMA latent vectors
+Model: uma_m_1p1
+Adsorbate: O
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/O adsorption.json
+Total structures: 4084
+
+Initializing UMA extractor...
+Failed for uma_m_1p1 with O: Failed to load UMA model: No module named 'fairchem.core.models.model_registry'
+
+============================================================
+Extracting UMA latent vectors
+Model: uma_m_1p1
+Adsorbate: OH
+============================================================
+
+Loading task list from: /DATA/user_scratch/pn50212/2024/12_AtomAttention/datasets/25Cao/OH adsorption.json
+Total structures: 4084
+
+Initializing UMA extractor...
+Failed for uma_m_1p1 with OH: Failed to load UMA model: No module named 'fairchem.core.models.model_registry'
+Run time
+5 sec
+0.0833333 min
+0.00138889 hour

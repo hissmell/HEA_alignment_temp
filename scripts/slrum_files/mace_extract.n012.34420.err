@@ -1,0 +1,13 @@
+WARNING: overwriting environment variables set in the machine
+overwriting variable ['LD_LIBRARY_PATH']
+dscribe not available. Please install: pip install dscribe
+Traceback (most recent call last):
+  File "/DATA/user_scratch/pn50212/2024/12_AtomAttention/scripts/experiments/extract_mace_latent_25cao.py", line 20, in <module>
+    from src.representations.mlip_embeddings.mace_latent import create_mace_extractor
+  File "/DATA/user_scratch/pn50212/2024/12_AtomAttention/src/representations/__init__.py", line 16, in <module>
+    from .physics_inspired import (
+  File "/DATA/user_scratch/pn50212/2024/12_AtomAttention/src/representations/physics_inspired/__init__.py", line 7, in <module>
+    from .coulomb_matrix import CoulombMatrixExtractor
+  File "/DATA/user_scratch/pn50212/2024/12_AtomAttention/src/representations/physics_inspired/coulomb_matrix.py", line 12, in <module>
+    from dscribe.descriptors import CoulombMatrix
+ModuleNotFoundError: No module named 'dscribe'

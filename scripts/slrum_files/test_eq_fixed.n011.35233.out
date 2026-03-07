@@ -1,0 +1,62 @@
+n011.hpc
+Sat Mar  7 06:46:09 PM KST 2026
+Removing mkl version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+Removing compiler version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+  Load "debugger" to debug DPC++ applications with the gdb-oneapi debugger.
+  Load "dpl" for additional DPC++ APIs: https://github.com/oneapi-src/oneDPL
+Removing oclfpga version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+Removing compiler-rt version 2023.1.0
+Use `module list` to view any remaining dependent modules.
+======================================================================
+Testing Fixed Equiformer Latent Extraction
+======================================================================
+
+Initializing Equiformer extractor...
+Loading Equiformer model: eqV2_31M_omat
+From: /DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_31M_omat.pt
+Selected extraction layer: output_heads.energy.energy_block.scalar_mlp
+Registered hook on layer: output_heads.energy.energy_block.scalar_mlp
+Loaded Equiformer model: eqV2_31M_omat
+Model type: HydraModel
+Device: cuda
+
+==================================================
+TESTING EXTRACTION:
+==================================================
+
+--- Testing Cu3 (n_atoms=3) ---
+✓ Extraction successful!
+  Latent shape: (3, 128)
+  Expected n_atoms: 3
+  Latent dim: 128
+  Extraction layer: output_heads.energy.energy_block.scalar_mlp
+  ✓ Shape matches n_atoms
+  Value range: [-2.8085, 5.4989]
+  Mean: 0.0083, Std: 1.1816
+
+--- Testing Cu5 (n_atoms=5) ---
+✓ Extraction successful!
+  Latent shape: (5, 128)
+  Expected n_atoms: 5
+  Latent dim: 128
+  Extraction layer: output_heads.energy.energy_block.scalar_mlp
+  ✓ Shape matches n_atoms
+  Value range: [-3.1974, 5.1686]
+  Mean: 0.0048, Std: 1.1953
+
+==================================================
+TESTING WITH 25CAO STRUCTURE:
+==================================================
+25Cao test structure not found, skipping...
+Removed hook
+
+======================================================================
+Test complete!
+======================================================================
+Run time
+13 sec
+0.216667 min
+0.00361111 hour
