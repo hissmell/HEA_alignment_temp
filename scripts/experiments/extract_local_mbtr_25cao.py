@@ -157,7 +157,7 @@ def extract_lmbtr_for_config(tasknames, adsorbate, config_name, config_params, c
         first_atoms = read(str(first_path))
 
         try:
-            first_result = extractor.extract_single(first_atoms, centers="adsorbates")
+            first_result = extractor.extract_single(first_atoms, centers="all")
             first_repr = first_result.get('lmbtr_all', None)
 
             if first_repr is not None:

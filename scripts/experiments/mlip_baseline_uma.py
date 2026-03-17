@@ -25,22 +25,74 @@ MODEL_DIR = BASE_DIR / "MLPs"
 OUTPUT_DIR = BASE_DIR / "baseline_results"
 OUTPUT_DIR.mkdir(exist_ok=True)
 
+DATASET = "25Cao"
+FAMILY = "UMA"
+
 UMA_MODELS = {
     'uma-s-1p1': MODEL_DIR / 'uma-s-1p1.pt',
     'uma-m-1p1': MODEL_DIR / 'uma-m-1p1.pt',
 }
 
 
+# ── Taskname parser ──────────────────────────────────────────────────────────
+
+def parse_taskname_to_path(taskname, adsorbate="O"):
+    """Parse taskname to CONTCAR file path"""
+    parts = taskname.split('&')
+
+    # Extract order number
+    order_str = parts[0]
+    order_num = order_str.replace('87777order', '')
+
+    # Extract site type
+    site_str = parts[1].replace('fix', '')
+
+    # Handle different suffix conventions
+    if adsorbate == 'O':
+        if site_str == 'topO':
+            site_type = 'top'
+        elif site_str == 'hollow':
+            site_type = 'hcp'
+        elif site_str == 'fcchollow':
+            site_type = 'fcc'
+        elif site_str == 'bridge':
+            site_type = 'bridge'
+        else:
+            raise ValueError(f"Unknown site type: {site_str} for O adsorbate")
+    else:  # OH
+        site_str = site_str.replace('OH', '')
+        if site_str == 'top':
+            site_type = 'top'
+        elif site_str == 'hollow':
+            site_type = 'hcp'
+        elif site_str == 'fcchollow':
+            site_type = 'fcc'
+        elif site_str == 'bridge':
+            site_type = 'bridge'
+        else:
+            raise ValueError(f"Unknown site type: {site_str} for OH adsorbate")
+
+    # Extract CONTCAR number (0-indexed to 1-indexed)
+    contcar_idx = int(parts[2]) + 1
+
+    # Construct path
+    base_path = str(DATA_DIR / "sourcedata")
+    file_path = f'{base_path}/{adsorbate}/{site_type}/order{order_num}/CONTCAR{contcar_idx}'
+
+    return file_path
+
+
 # ── Dataset ───────────────────────────────────────────────────────────────────
 
 def load_25cao_dataset():
     structures, dft_energies = {}, {}
+    stats = {'O': 0, 'OH': 0, 'failed': 0}
+    failed_paths = []
 
     for adsorbate in ['O', 'OH']:
         json_path = DATA_DIR / f"{adsorbate} adsorption.json"
         with open(json_path) as f:
             data = json.load(f)
-        sourcedata_dir = DATA_DIR / "sourcedata" / adsorbate
 
         for task_id, task_data in tqdm(data.items(), desc=f"Loading {adsorbate}"):
             ads_energy = task_data.get('ads_energy')
@@ -48,46 +100,43 @@ def load_25cao_dataset():
                 continue
 
             taskname = task_data.get('taskname', '')
-            order_match = taskname.split('order')
-            if len(order_match) <= 1:
+            try:
+                file_path = parse_taskname_to_path(taskname, adsorbate)
+            except (ValueError, IndexError) as e:
+                stats['failed'] += 1
+                failed_paths.append(f"{taskname}: {e}")
                 continue
 
-            order_num = order_match[1].split('&')[0]
-            site = task_data.get('site', 'unknown')
-            site_map = {'hollow': 'fcc', 'bridge': 'bridge', 'top': 'top',
-                        'fcc': 'fcc', 'hcp': 'hcp'}
-            site_dir = site_map.get(site, site)
-
-            contcar_dir = sourcedata_dir / site_dir / f"order{order_num}"
-            if not contcar_dir.exists():
-                continue
-            contcar_files = sorted(contcar_dir.glob("CONTCAR*"))
-            if not contcar_files:
+            if not Path(file_path).exists():
+                stats['failed'] += 1
+                failed_paths.append(f"{taskname}: {file_path} not found")
                 continue
 
-            atoms = read(str(contcar_files[0]))
+            atoms = read(file_path)
             sid = f"{adsorbate}_{task_id}"
             structures[sid] = atoms
             dft_energies[sid] = ads_energy
+            stats[adsorbate] += 1
 
-    print(f"Loaded {len(structures)} structures")
+    print(f"Loaded {len(structures)} structures (O: {stats['O']}, OH: {stats['OH']}, failed: {stats['failed']})")
+    if failed_paths:
+        print(f"  First 5 failures: {failed_paths[:5]}")
     return structures, dft_energies
 
 
 # ── Metrics ───────────────────────────────────────────────────────────────────
 
-def calculate_metrics(dft_energies, predictions):
+def calculate_metrics(detailed_df):
     from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
     from scipy import stats
 
-    common = [sid for sid in dft_energies if sid in predictions
-              and not np.isnan(predictions[sid])]
-    if not common:
+    df = detailed_df.dropna(subset=['mlip_adsorption_energy'])
+    if len(df) == 0:
         return {'MAE': np.nan, 'RMSE': np.nan, 'R2': np.nan,
                 'Pearson_r': np.nan, 'N_samples': 0}
 
-    y_true = np.array([dft_energies[sid] for sid in common])
-    y_pred = np.array([predictions[sid] for sid in common])
+    y_true = df['dft_adsorption_energy'].values
+    y_pred = df['mlip_adsorption_energy'].values
 
     pearson_r, _ = stats.pearsonr(y_true, y_pred)
     spearman_r, _ = stats.spearmanr(y_true, y_pred)
@@ -158,7 +207,8 @@ class UMAPredictor:
             pickle.dump(refs, f)
         return refs
 
-    def predict_adsorption_energy(self, atoms: Atoms, adsorbate: str) -> float:
+    def predict_adsorption_energy(self, atoms: Atoms, adsorbate: str) -> dict:
+        """Return dict with all intermediate energies."""
         if self._gas_refs is None:
             self._gas_refs = self.calculate_gas_references()
 
@@ -172,7 +222,15 @@ class UMAPredictor:
             del slab[-2:]
         e_slab = self.predict(slab)
 
-        return e_adslab - e_slab - self._gas_refs[adsorbate]
+        gas_ref = self._gas_refs[adsorbate]
+        e_ads = e_adslab - e_slab - gas_ref
+
+        return {
+            'mlip_adsorption_energy': e_ads,
+            'mlip_adslab_energy': e_adslab,
+            'mlip_slab_energy': e_slab,
+            'mlip_gas_ref_energy': gas_ref,
+        }
 
     def cleanup(self):
         del self.calculator
@@ -189,53 +247,68 @@ def main():
     print("Loading 25Cao dataset...")
     structures, dft_energies = load_25cao_dataset()
 
-    all_metrics = {}
-    all_predictions = {}
-
     for model_name in args.models:
         print(f"\n{'='*60}\nEvaluating {model_name}\n{'='*60}")
         predictor = UMAPredictor(model_name)
 
         try:
             predictor.load_model()
-            predictions = {}
+
+            records = []
             for sid, atoms in tqdm(structures.items(), desc=model_name):
                 adsorbate = sid.split('_')[0]
                 try:
-                    predictions[sid] = predictor.predict_adsorption_energy(atoms, adsorbate)
+                    result = predictor.predict_adsorption_energy(atoms, adsorbate)
+                    dft_e = dft_energies[sid]
+                    error = result['mlip_adsorption_energy'] - dft_e
+                    records.append({
+                        'adslab_id': sid,
+                        'adsorbate': adsorbate,
+                        'dft_adsorption_energy': dft_e,
+                        **result,
+                        'error': error,
+                        'abs_error': abs(error),
+                    })
                 except Exception as e:
                     print(f"  Failed {sid}: {e}")
-                    predictions[sid] = np.nan
+                    records.append({
+                        'adslab_id': sid,
+                        'adsorbate': adsorbate,
+                        'dft_adsorption_energy': dft_energies[sid],
+                        'mlip_adsorption_energy': np.nan,
+                        'mlip_adslab_energy': np.nan,
+                        'mlip_slab_energy': np.nan,
+                        'mlip_gas_ref_energy': np.nan,
+                        'error': np.nan,
+                        'abs_error': np.nan,
+                    })
 
-            metrics = calculate_metrics(dft_energies, predictions)
-            all_metrics[model_name] = metrics
-            all_predictions[model_name] = predictions
+            detailed_df = pd.DataFrame(records)
+            metrics = calculate_metrics(detailed_df)
 
             print(f"  MAE={metrics['MAE']:.4f} eV  RMSE={metrics['RMSE']:.4f} eV  "
                   f"R²={metrics['R2']:.4f}  N={metrics['N_samples']}")
+
+            # Save to DATASET/FAMILY/model_name/ subfolder
+            model_dir = OUTPUT_DIR / DATASET / FAMILY / model_name
+            model_dir.mkdir(parents=True, exist_ok=True)
+
+            # summary.xlsx
+            summary_df = pd.DataFrame([{'Model': model_name, **metrics}])
+            summary_path = model_dir / 'summary.xlsx'
+            summary_df.to_excel(summary_path, index=False, engine='openpyxl')
+
+            # detailed.xlsx
+            detailed_path = model_dir / 'detailed.xlsx'
+            detailed_df.to_excel(detailed_path, index=False, engine='openpyxl')
+
+            print(f"  Saved: {summary_path}")
+            print(f"  Saved: {detailed_path}")
+
         except Exception as e:
             print(f"Error: {e}")
-            all_metrics[model_name] = {'MAE': np.nan, 'RMSE': np.nan, 'R2': np.nan,
-                                       'N_samples': 0, 'Error': str(e)}
         finally:
             predictor.cleanup()
-
-    # Save results
-    results_df = pd.DataFrame(all_metrics).T.reset_index().rename(columns={'index': 'Model'})
-    excel_path = OUTPUT_DIR / 'baseline_uma.xlsx'
-    with pd.ExcelWriter(excel_path, engine='openpyxl') as writer:
-        results_df.to_excel(writer, sheet_name='Summary', index=False)
-        for model_name, preds in all_predictions.items():
-            pred_df = pd.DataFrame({
-                'Structure_ID': list(preds.keys()),
-                'DFT_Energy': [dft_energies.get(sid, np.nan) for sid in preds],
-                'Predicted_Energy': list(preds.values()),
-            })
-            pred_df['Error'] = pred_df['Predicted_Energy'] - pred_df['DFT_Energy']
-            pred_df.to_excel(writer, sheet_name=model_name[:31], index=False)
-
-    print(f"\nSaved: {excel_path}")
-    print(results_df[['Model', 'MAE', 'RMSE', 'R2', 'N_samples']].to_string(index=False))
 
 
 if __name__ == "__main__":

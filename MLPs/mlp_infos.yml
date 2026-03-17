@@ -6,10 +6,55 @@
 
 models:
   # Equiformer Family
-  eq2_121M_e4_f100_oc22_s2ef:
+  eqV2_31M_omat:
     family: "Equiformer"
     model: "EquiformerV2"
-    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eq2_121M_e4_f100_oc22_s2ef.pt"
+    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_31M_omat.pt"
+    output_layer: null
+    target: "total_energy"
+    normalize_std: 1.0
+    normalize_mean: 0.0
+  
+  eqV2_86M_omat:
+    family: "Equiformer"
+    model: "EquiformerV2"
+    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_86M_omat.pt"
+    output_layer: null
+    target: "total_energy"
+    normalize_std: 1.0
+    normalize_mean: 0.0
+
+  eqV2_153M_omat:
+    family: "Equiformer"
+    model: "EquiformerV2"
+    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_153M_omat.pt"
+    output_layer: null
+    target: "total_energy"
+    normalize_std: 1.0
+    normalize_mean: 0.0
+
+  eqV2_31M_omat_mp_salex:
+    family: "Equiformer"
+    model: "EquiformerV2"
+    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_31M_omat_mp_salex.pt"
+    output_layer: null
+    target: "total_energy"
+    normalize_std: 1.0
+    normalize_mean: 0.0
+
+  eqV2_86M_omat_mp_salex:
+    family: "Equiformer"
+    model: "EquiformerV2"
+    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_86M_omat_mp_salex.pt"
+    output_layer: null
+    target: "total_energy"
+    normalize_std: 1.0
+    normalize_mean: 0.0
+
+  eqV2_153M_omat_mp_salex:
+    family: "Equiformer"
+    model: "EquiformerV2"
+    path: "/DATA/user_scratch/pn50212/2024/12_AtomAttention/MLPs/eqV2_153M_omat_mp_salex.pt"
     output_layer: null
     target: "total_energy"
     normalize_std: 1.0

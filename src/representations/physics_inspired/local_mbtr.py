@@ -64,7 +64,7 @@ class LocalMBTRExtractor(PhysicsInspiredExtractor):
 
         # Default parameters optimized for 25Cao analysis
         self.geometry = geometry or {"function": "inverse_distance"}
-        self.grid = grid or {"min": 0, "max": 1, "n": 200, "sigma": 0.02}
+        self.grid = grid or {"min": 0, "max": 1, "n": 50, "sigma": 0.02}
         self.weighting = weighting or {"function": "exp", "scale": 0.5, "threshold": 1e-3}
 
         self.lmbtr = None
@@ -118,7 +118,7 @@ class LocalMBTRExtractor(PhysicsInspiredExtractor):
     def extract_single(
         self,
         atoms: Atoms,
-        centers: Union[List[int], List[List[float]], str] = "adsorbates",
+        centers: Union[List[int], List[List[float]], str] = "all",
         atom_selection: str = "all"
     ) -> Dict[str, Any]:
         """
@@ -195,6 +195,7 @@ class LocalMBTRExtractor(PhysicsInspiredExtractor):
 
             elif centers == "all":
                 center_indices = list(range(len(atoms)))
+                print(f"Using all {len(atoms)} atoms as centers")
             else:
                 raise ValueError(f"Unknown center string: {centers}")
 
@@ -387,20 +388,20 @@ def create_25cao_lmbtr_extractor(
     if k_term == "k2":
         if geometry_function == "distance":
             geometry = {"function": "distance"}
-            grid = {"min": 0, "max": 20, "n": 200, "sigma": 0.1}
+            grid = {"min": 0, "max": 20, "n": 50, "sigma": 0.1}
         elif geometry_function == "inverse_distance":
             geometry = {"function": "inverse_distance"}
-            grid = {"min": 0, "max": 1, "n": 200, "sigma": 0.02}
+            grid = {"min": 0, "max": 1, "n": 50, "sigma": 0.02}
         else:
             raise ValueError(f"Unsupported k2 geometry function: {geometry_function}")
 
     elif k_term == "k3":
         if geometry_function == "angle":
             geometry = {"function": "angle"}
-            grid = {"min": 0, "max": 180, "n": 180, "sigma": 2}
+            grid = {"min": 0, "max": 180, "n": 50, "sigma": 2}
         elif geometry_function == "cosine":
             geometry = {"function": "cosine"}
-            grid = {"min": -1, "max": 1, "n": 200, "sigma": 0.02}
+            grid = {"min": -1, "max": 1, "n": 50, "sigma": 0.02}
         else:
             raise ValueError(f"Unsupported k3 geometry function: {geometry_function}")
 
